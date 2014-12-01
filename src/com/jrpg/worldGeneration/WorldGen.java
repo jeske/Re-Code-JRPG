@@ -1,7 +1,9 @@
 package com.jrpg.worldGeneration;
 
+import java.util.ArrayList;
 import java.util.Random;
-import com.jrpg.blocks.Block;
+
+import com.jrpg.blocks.*;
 
 public class WorldGen {
 	
@@ -20,9 +22,9 @@ public class WorldGen {
 	
 	// To select blocks to draw
 	private WorldSelect selectBlock = new WorldSelect();
-	
-	// 2D array to hold blocks generated to game-screen
-	private Block[][] blocks = new Block[ScreenWidthBlocks][ScreenHeightBlocks];
+
+	// 2D ArrayList to hold blocks generated to game-screen
+	private Block[][] gameBlocks = new Block[ScreenWidthBlocks][ScreenHeightBlocks];
 	
 	public WorldGen(){
 		
@@ -48,18 +50,18 @@ public class WorldGen {
 			for(int j = 0; j < ScreenHeightBlocks; j++){
 				
 				//Assign values for id, x, & y of each block
-				id = random.nextInt(2);
+				id = random.nextInt(3);
 				blockX = i * 32;
-				blockY = j * 32;
-
-				// If the block selected is not filled -> fill it
-				if(blocks[i][j] == null){
-					blocks[i][j] = selectBlock.createBlock(id, blockX, blockY); // Which will take an id, x, & y	
+				blockY = j * 32;				
 				
+				// If the block selected is not filled -> fill it
+				if(gameBlocks[i][j] == null){
+					gameBlocks[i][j] = selectBlock.createBlock(id, blockX, blockY);
+					
 				// If the block selected is filled -> assign it to itself (keep it the same)
 				} else {
-					Block block = blocks[i][j];
-					blocks[i][j] = selectBlock.createBlock(block.getID(), block.getX(), block.getY());
+					Block block = gameBlocks[i][j];
+					gameBlocks[i][j] = selectBlock.createBlock(block.getID(), block.getX(), block.getY());
 					
 				}
 				

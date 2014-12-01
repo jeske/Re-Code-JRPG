@@ -1,10 +1,6 @@
 package com.jrpg.blocks;
 
-import static org.lwjgl.opengl.GL11.GL_QUADS;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glVertex2f;
-
+import static org.lwjgl.opengl.GL11.*;
 import org.newdawn.slick.Image;
 
 public class Grass extends Block{
@@ -33,7 +29,6 @@ private Image grass;
 		grass.bind();
 		glBegin(GL_QUADS);
 		{
-
 			glVertex2f(x, y);		
 			glVertex2f(x, y + 32);			
 			glVertex2f(x + 32, y + 32);				
@@ -41,4 +36,6 @@ private Image grass;
 		}
 		glEnd();
 	}
+	
+
 }

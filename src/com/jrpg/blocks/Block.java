@@ -3,16 +3,18 @@ package com.jrpg.blocks;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.opengl.Texture;
-import com.jrpg.textureLoader.LoadTexture;
 
 public class Block {
 	
 	// Block width & height
 	protected final int BLOCK_W = 32;
 	protected final int BLOCK_H = 32;
+	
+	// ID & X/Y position of block
 	protected int blockID;
 	protected int blockX, blockY;
+	
+	// The texture atlas image
 	private Image textureAtlas;
 	protected SpriteSheet spriteSheet;	
 	
@@ -23,14 +25,14 @@ public class Block {
 			e.printStackTrace();
 		}
 		spriteSheet = new SpriteSheet(textureAtlas, BLOCK_W, BLOCK_H, 2, 2);
+
 	}
 	
-	public void destroyBlock(){
-		
-	}
+	public void destroyBlock(){}
 	
 	public int getID() {
 		return blockID;
+		
 	}
 	
 	public int getX() {
