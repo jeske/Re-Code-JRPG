@@ -6,7 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.opengl.Texture;
 import com.namone.movement.playerMovement;
 import com.namone.gameStateManager.GameStateManager;
-import com.namone.player.Player;
+import com.namone.player.*;
 import com.namone.textureLoad.LoadTextures;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -54,7 +54,7 @@ public class MainGame {
 		System.out.println("Application Initialized...");
 		
 		// CREATE THE PLAYER (DON'T DRAW YET)
-		player = new Player();
+		player = new Clev();
 		
 		// LOOP THROUGH THE GAME
 		gameLoop(); 

@@ -10,12 +10,12 @@ public class Knight extends Enemy {
 	LoadTextures textureLoad = new LoadTextures();
 
 	// SET HEALTH/ID/IMAGE SPRITE FOR KNIGHT ENEMY
-	public Knight() {
+	public Knight(int x, int y) {
 		enemyTexture = textureLoad.LoadTexture("resources/knight.png");
 		movementSpeed = 1;
 		viewRadius = 4; //NOT WORKING YET
-		enemyX = 250; // TEMPORARY
-		enemyY = 250; // TEMPORARY
+		enemyX = x; // TEMPORARY
+		enemyY = y; // TEMPORARY
 		health = 50;
 		ID = 0;		
 	}
