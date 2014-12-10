@@ -17,7 +17,7 @@ public class LoadTextures {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("PLAYER TEXTURE LOADED: " + PATH);
+		System.out.println("TEXTURE LOADED: " + PATH);
 		
 		return loadedTexture;
 		

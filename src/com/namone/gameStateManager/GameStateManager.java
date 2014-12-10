@@ -21,7 +21,7 @@ public class GameStateManager {
 	
 	public void update(Player player){
 		// UPDATE CURRENT GAME-STATE
-		gameStates.get(currentState).update();
+		gameStates.get(currentState).update(player);
 		
 		
 	

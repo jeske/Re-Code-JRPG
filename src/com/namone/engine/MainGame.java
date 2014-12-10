@@ -15,7 +15,6 @@ public class MainGame {
 	
 	private LoadTextures     loadTexture;
 	private GameStateManager gameStates;
-	private playerMovement   playerMovement;
 	private Player           player;
 	private Graphics         graphics; // GRAPHICS OBJECT TO DRAW, ETC
 	private Graphics         g;        // GRAPHICS CONTEXT
@@ -57,9 +56,6 @@ public class MainGame {
 		// CREATE THE PLAYER (DON'T DRAW YET)
 		player = new Player();
 		
-		// CREATE PLAYER MOVMENT
-		playerMovement = new playerMovement();
-		
 		// LOOP THROUGH THE GAME
 		gameLoop(); 
 		
@@ -82,7 +78,6 @@ public class MainGame {
 	// UPDATE GAME - PLAYER POSITION, ETC.
 	public void update(){
 		gameStates.update(player); // UPDATE THE SELECTED GAME STATE
-		playerMovement.movePlayer(player); // UPDATE PLAYER POSITION
 	}
 	
 	

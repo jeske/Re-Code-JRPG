@@ -22,7 +22,7 @@ public class Menu extends GameState {
 		// TODO - PRINT OUT TITLE, BUTTONS, EFFECTS, ETC.
 	}
 	
-	public void update(){
+	public void update(Player player){
 		// TODO
 	}
 

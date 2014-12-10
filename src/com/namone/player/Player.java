@@ -23,6 +23,7 @@ public class Player {
 	public void drawPlayer(){
 		
 		playerTexture.bind();
+		glColor3f(1, 1, 1);
 		glBegin(GL_QUADS);
 		{
 				glTexCoord2f(0, 0);
@@ -41,8 +42,7 @@ public class Player {
 	
 	// UPDATE THE PLAYER
 	public void updatePlayer(){
-		// TODO PLAYER UPDATE CODE (COULD PUT KEYBOARD INPUT HERE. IT'S BETTER
-		// IN SEPERATE CLASS)
+		// MOVEMENT CODE IN RUNGAME CLASS
 		
 	}
 
