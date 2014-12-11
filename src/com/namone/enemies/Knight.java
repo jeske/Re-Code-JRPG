@@ -13,7 +13,8 @@ public class Knight extends Enemy {
 	public Knight(int x, int y) {
 		enemyTexture = textureLoad.LoadTexture("resources/knight.png");
 		movementSpeed = 1;
-		viewRadius = 4; //NOT WORKING YET
+		distanceDetect = new DistanceDetect();
+		viewRadius = 90; //NOT WORKING YET
 		enemyX = x; // TEMPORARY
 		enemyY = y; // TEMPORARY
 		health = 50;
@@ -39,48 +40,52 @@ public class Knight extends Enemy {
 	}
 	
 	public void updateEnemy(Player player) {
+
+		// CREATE A NEW KNIGHT ENEMY AND CHECK RANGE PASSING
+		// ITSELF INTO IT ('THIS')
+		inRange = distanceDetect.checkRange(player, this);
 		
 		// UPPER-RIGHT OF ENEMY
-		if(player.PlayerX >= enemyX && player.PlayerY <= enemyY) {
+		if(player.PlayerX >= enemyX && player.PlayerY <= enemyY && inRange) {
 			enemyX += movementSpeed;
 			enemyY -= movementSpeed;
 		}
 		
 		// LOWER-RIGHT OF ENEMY
-		else if(player.PlayerX >= enemyX && player.PlayerY >= enemyY) {
+		else if(player.PlayerX >= enemyX && player.PlayerY >= enemyY && inRange) {
 			enemyX += movementSpeed;
 			enemyY += movementSpeed;
 		}
 		
 		// UPPER-LEFT OF ENEMY
-		else if(player.PlayerX <= enemyX && player.PlayerY <= enemyY) {
+		else if(player.PlayerX <= enemyX && player.PlayerY <= enemyY && inRange) {
 			enemyX -= movementSpeed;
 			enemyY -= movementSpeed;
 		}
 		
 		// LOWER-LEFT OF ENEMY
-		else if(player.PlayerX <= enemyX && player.PlayerY >= enemyY) {
+		else if(player.PlayerX <= enemyX && player.PlayerY >= enemyY && inRange) {
 			enemyX -= movementSpeed;
 			enemyY += movementSpeed;
 		}
 		
 		// RIGHT OF ENEMY
-		else if(player.PlayerX >= enemyX) {
+		else if(player.PlayerX >= enemyX && inRange) {
 			enemyX += movementSpeed;
 		}
 		
 		// LEFT OF ENEMY
-		else if(player.PlayerX <= enemyX) {
+		else if(player.PlayerX <= enemyX && inRange) {
 			enemyX -= movementSpeed;
 		}
 		
 		// UP FROM ENEMY
-		else if(player.PlayerY <= enemyY) {
+		else if(player.PlayerY <= enemyY && inRange) {
 			enemyY -= movementSpeed;
 		}
 		
 		// DOWN FROM ENEMY
-		else if(player.PlayerY >= enemyY) {
+		else if(player.PlayerY >= enemyY && inRange) {
 			enemyX += movementSpeed;
 		}
 		
@@ -89,6 +94,14 @@ public class Knight extends Enemy {
 			enemyY = enemyY;
 		}
 		
+	}
+	
+	public int getEnemyX() {
+		return enemyX;
+	}
+	
+	public int getEnemyY() {
+		return enemyY;
 	}
 	
 }

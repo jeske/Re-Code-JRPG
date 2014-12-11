@@ -17,11 +17,12 @@ public class Player {
 	// PLAYER X & Y
 	public int PlayerX =     100;
 	public int PlayerY =     100;
-	
+	private final int PLAYER_W = 32, PLAYER_H = 32;
 	private Image              textureAtlas;
 	protected SpriteSheet      spriteSheet;
+	private float              animationTimer;
 	
-	public Player(){	
+	public Player() {	
 		// SET UP PLAYER SPRITE-SHEET
 		try {
 			textureAtlas = new Image("resources/playerSpritesheet.png");
@@ -30,7 +31,7 @@ public class Player {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		spriteSheet = new SpriteSheet(textureAtlas, 32, 32, 0, 0);
+		spriteSheet = new SpriteSheet(textureAtlas, PLAYER_W, PLAYER_H, 0, 0);
 
 	}
 	
@@ -41,7 +42,7 @@ public class Player {
 	public void playerAttack(ArrayList enemies) {
 		// IF THE KEY IS DOWN AND THE ARRAY ISN'T EMPTY - REMOVE
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !enemies.isEmpty()){
-			enemies.remove(0);
+			// TODO ATTACK CODE
 		} 
 						
 	}

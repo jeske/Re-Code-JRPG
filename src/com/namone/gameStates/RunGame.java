@@ -27,8 +27,19 @@ public class RunGame extends GameState{
 		
 		// NOTE: PLAYER IS CREATED IN MAINGAME CLASS
 		
+		
+		/*
+		 * @ NOTE @ 
+		 * 
+		 * WILL CREATE FOR LOOP TO ITERATE THROUGH ALL ENEMIES
+		 * IN ARRAYLIST AND DRAW/UPDATE THEM. HOWEVER, FOR NOW,
+		 * I AM JUST MAKING THEM INDIVIDUALY. 
+		 * 
+		 */
 		// CREATE ENEMIES (NOT DRAWN YET)
 		enemies.add(new Knight(300, 95)); // CAN MAKE RANDOM LATER
+		// CREATE ENEMIES (NOT DRAWN YET)
+		enemies.add(new Knight(400, 95)); // CAN MAKE RANDOM LATER
 		
 	}
 
@@ -39,6 +50,7 @@ public class RunGame extends GameState{
 		// IF THE ARRAY ISN'T EMPTY - DRAW (PREVENTS INDEXOUTOFBOUNDS)
 		if(!enemies.isEmpty()){
 			enemies.get(0).drawEnemy();
+			enemies.get(1).drawEnemy();
 		} 
 	}
 	
@@ -51,6 +63,7 @@ public class RunGame extends GameState{
 		// IF THE ARRAY ISN'T EMPTY - UPDATE (PREVENTS INDEXOUTOFBOUNDS)
 		if(!enemies.isEmpty()){
 			enemies.get(0).updateEnemy(player);
+			enemies.get(1).updateEnemy(player);
 		} 
 		
 		// PLAYER ATTACK
