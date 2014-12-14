@@ -2,6 +2,7 @@ package com.namone.enemies;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import com.namone.checkDistance.DistanceDetect;
 import com.namone.player.Player;
 import com.namone.textureLoad.LoadTextures;
 
@@ -11,18 +12,20 @@ public class Knight extends Enemy {
 
 	// SET HEALTH/ID/IMAGE SPRITE FOR KNIGHT ENEMY
 	public Knight(int x, int y) {
-		enemyTexture = textureLoad.LoadTexture("resources/knight.png");
-		movementSpeed = 1;
-		distanceDetect = new DistanceDetect();
-		viewRadius = 90; //NOT WORKING YET
-		enemyX = x; // TEMPORARY
-		enemyY = y; // TEMPORARY
-		health = 50;
-		ID = 0;		
+		enemyTexture =     textureLoad.LoadTexture("resources/knight.png");
+		movementSpeed =    1.0f; // MOVEMENT SPEED OF ENEMIES!
+		distanceDetect =   new DistanceDetect();
+		viewRadius =       120; 
+		enemyX =           x; // TEMPORARY
+		enemyY =           y; // TEMPORARY WILL HOPEFULLY BE RANDOM IN FUTURE
+		health =           50; // HEALTH OF ENEMY
+		ID =               0;	// ID OF ENEMY	
+
 	}
 	
 	public void drawEnemy() {
 		
+		// BIND ENEMY TEXTURE TO SQUARE (LOADED IN ENEMY.CLASS)
 		enemyTexture.bind();
 		glColor3f(1, 1, 1);
 		glBegin(GL_QUADS);
@@ -30,7 +33,7 @@ public class Knight extends Enemy {
 				glTexCoord2f(0, 0);
 			glVertex2f(enemyX, enemyY);
 				glTexCoord2f(0, 1);
-			glVertex2f(enemyX, enemyY + 64);
+			glVertex2f(enemyX, enemyY + 64); // CONTROL SIZE OF SPRITE HERE!
 				glTexCoord2f(1, 1);
 			glVertex2f(enemyX + 64, enemyY + 64);
 				glTexCoord2f(1, 0);
@@ -43,7 +46,7 @@ public class Knight extends Enemy {
 
 		// CREATE A NEW KNIGHT ENEMY AND CHECK RANGE PASSING
 		// ITSELF INTO IT ('THIS')
-		inRange = distanceDetect.checkRange(player, this);
+		inRange = distanceDetect.checkEnemySight(player, this);
 		
 		// UPPER-RIGHT OF ENEMY
 		if(player.PlayerX >= enemyX && player.PlayerY <= enemyY && inRange) {
@@ -94,14 +97,6 @@ public class Knight extends Enemy {
 			enemyY = enemyY;
 		}
 		
-	}
-	
-	public int getEnemyX() {
-		return enemyX;
-	}
-	
-	public int getEnemyY() {
-		return enemyY;
 	}
 	
 }

@@ -32,6 +32,7 @@ public class Clev extends Player{
 		
 
 	}
+	
 	// NOTE: .GETSUBIMAGE(INT X, INT Y) WORKS OFF OF CELLS, NOT COORDINATES
 	public void updatePlayer() {
 		// MOVE UP

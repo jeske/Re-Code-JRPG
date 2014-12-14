@@ -10,17 +10,27 @@ import org.newdawn.slick.opengl.Texture;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import com.namone.checkDistance.DistanceDetect;
+import com.namone.enemies.Enemy;
 import com.namone.textureLoad.LoadTextures;
 
 public class Player {
 	
-	// PLAYER X & Y
-	public int PlayerX =     100;
-	public int PlayerY =     100;
-	private final int PLAYER_W = 32, PLAYER_H = 32;
-	private Image              textureAtlas;
-	protected SpriteSheet      spriteSheet;
-	private float              animationTimer;
+	// PLAYER X & Y, HEIGHT, RANG, ETC
+	public float playerRange = 32.5f;
+	private DistanceDetect distanceDetect = new DistanceDetect();
+	// IS THE ENEMY IN RANGE
+	protected boolean inRange   = true; 
+	public int PlayerX =          100;
+	public int PlayerY =          100;
+	private final int PLAYER_W =  32;
+	private final int PLAYER_H =  32;
+	
+	// FOR ANIMATIONS
+	protected int frame =        0; 
+	
+	private Image          textureAtlas;
+	protected SpriteSheet  spriteSheet;
 	
 	public Player() {	
 		// SET UP PLAYER SPRITE-SHEET
@@ -39,21 +49,29 @@ public class Player {
 	public void drawPlayer() {}
 	
 	// PLAYER ATTACK 
-	public void playerAttack(ArrayList enemies) {
+	
+	// IF THE ENEMY IS IN RANGE... THEN THE PLAYER WILL ATTACK
+	public void playerAttack(ArrayList<Enemy> enemies, int maxEnemy) {
+		
+		// CONTROLS RANGE DETECTION
+		inRange = distanceDetect.checkPlayerAttackRange(this, enemies, maxEnemy);
+		
 		// IF THE KEY IS DOWN AND THE ARRAY ISN'T EMPTY - REMOVE
-		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !enemies.isEmpty()){
-			// TODO ATTACK CODE
+		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) &&
+				!enemies.isEmpty() && inRange){
+			System.out.println("Attack!");
+			
+			// TODO - FIX THIS		
+			
 		} 
 						
 	}
 	
 	// UPDATE THE PLAYER
 	public void updatePlayer(){
-		isAlive();		
-	}
-	
-	public void isAlive() {
-		// TODO CHECK IF PLAYER IS ALIVE
+		// OVERRIDDEN BY INDIVIDUAL PLAYER SUB-CLASSES 
+		// NO NEED TO PUT ANYTHING IN HERE
+		
 	}
 
 }

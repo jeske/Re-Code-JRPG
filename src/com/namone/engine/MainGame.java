@@ -32,13 +32,9 @@ public class MainGame {
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
-		}
+		}		
 		
-		
-		
-		// TODO ADD GRAPHICS CONTEXT & GRAPHICS OBJECT
-		
-		
+		// TODO ADD GRAPHICS CONTEXT & GRAPHICS OBJECT (FOR TEXT DRAWING, ETC)		
 		
 		// INITIALIZE OPENGL
 		setOpenGL();
@@ -53,8 +49,9 @@ public class MainGame {
 		// TELL US WHAT'S GOING ON
 		System.out.println("Application Initialized...");
 		
+		// CLEV IS THE DEFAULT PLAYER
 		// CREATE THE PLAYER (DON'T DRAW YET)
-		player = new Clev();
+		player = new Clev(); 
 		
 		// LOOP THROUGH THE GAME
 		gameLoop(); 

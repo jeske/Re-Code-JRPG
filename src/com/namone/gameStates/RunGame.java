@@ -1,6 +1,7 @@
 package com.namone.gameStates;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Image;
@@ -19,6 +20,11 @@ public class RunGame extends GameState{
 	private playerMovement   playerMovement;
 	private Enemy            enemy;
 	
+	// ITERATE THROUGH ARRAYLIST OF ENEMIES
+	public int currentEnemy;
+	public int maxEnemy = 25; // CONTROLS HOW MANY ENEMIES ARE DRAWN TO SCREEN
+	private Random random = new Random();
+	
 	// INITIALIZE EVERYTHING
 	public RunGame(){	
 		
@@ -27,19 +33,12 @@ public class RunGame extends GameState{
 		
 		// NOTE: PLAYER IS CREATED IN MAINGAME CLASS
 		
-		
-		/*
-		 * @ NOTE @ 
-		 * 
-		 * WILL CREATE FOR LOOP TO ITERATE THROUGH ALL ENEMIES
-		 * IN ARRAYLIST AND DRAW/UPDATE THEM. HOWEVER, FOR NOW,
-		 * I AM JUST MAKING THEM INDIVIDUALY. 
-		 * 
-		 */
-		// CREATE ENEMIES (NOT DRAWN YET)
-		enemies.add(new Knight(300, 95)); // CAN MAKE RANDOM LATER
-		// CREATE ENEMIES (NOT DRAWN YET)
-		enemies.add(new Knight(400, 95)); // CAN MAKE RANDOM LATER
+		// FOR LOOP TO ITERATE THROUGH ARRAY LIST
+		for (currentEnemy = 0; currentEnemy <= maxEnemy; 
+				currentEnemy++) {
+			enemies.add(new Knight(random.nextInt(800), random.nextInt(600)));
+		}
+
 		
 	}
 
@@ -49,8 +48,11 @@ public class RunGame extends GameState{
 		
 		// IF THE ARRAY ISN'T EMPTY - DRAW (PREVENTS INDEXOUTOFBOUNDS)
 		if(!enemies.isEmpty()){
-			enemies.get(0).drawEnemy();
-			enemies.get(1).drawEnemy();
+			// DRAW EACH ITEM IN ARRAY-LIST
+			for (currentEnemy = 0; currentEnemy <= maxEnemy;
+					currentEnemy++) {
+				enemies.get(currentEnemy).drawEnemy();
+			}
 		} 
 	}
 	
@@ -62,12 +64,15 @@ public class RunGame extends GameState{
 		
 		// IF THE ARRAY ISN'T EMPTY - UPDATE (PREVENTS INDEXOUTOFBOUNDS)
 		if(!enemies.isEmpty()){
-			enemies.get(0).updateEnemy(player);
-			enemies.get(1).updateEnemy(player);
+			for (currentEnemy = 0; currentEnemy <= maxEnemy;
+					currentEnemy++) {
+				
+				enemies.get(currentEnemy).updateEnemy(player);
+			}
 		} 
 		
 		// PLAYER ATTACK
-		player.playerAttack(enemies);
+		player.playerAttack(enemies, maxEnemy);
 		
 		// PLAYER MOVEMENT
 		playerMovement.movePlayer(player);
