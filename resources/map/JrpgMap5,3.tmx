@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="jrpggrass32x32" tilewidth="32" tileheight="32">
+  <image source="jrpggrass.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="4" name="jrpgpath32x32" tilewidth="32" tileheight="32">
+  <image source="jrpgpath.png" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="6" name="jrpgbrick32x32" tilewidth="32" tileheight="32">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+  <image source="jrpgbrick.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="7" name="jrpgfield64x64" tilewidth="64" tileheight="64">
+  <image source="jrpgfield.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="8" name="jrpgtree32x32" tilewidth="32" tileheight="32">
+  <image source="jrpgtree.png" width="32" height="64"/>
+ </tileset>
+ <layer name="Background" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJyVlVsOwjAMBJs03P/KFIlI1mjWgY+o0KaO9+HtfV3X/azxrPldo9wb5Rl/T9zf703U5PUua+D3LDUG9t7yrO6fqJn6q3sGarJ39mPnWR3rjRzV/4kbPqcWxkk9c+J89prepSZVe+qfOEjPzFusaR6yM6g1MSRPG+dWm+dbL2lWOh3pZ/Nf6iVho6/JY+KKWEy/iWvq/58ZSpljvkue4UreP+VLej/ln+WBZSPxdXliOBOHSd+UOcZv0v2zXtLzrr9C/aRT4pte2OeuZnUZxdlJc3nSnTWWnGmZbJlls28zbnhWqGd5Sl6IOXnFvFTxskd637B2OWMz1mlt/XeeN927nCeeJXuMC/qA3rdeOu8seSdlSZfFtt9ynniTpqyRMpXfq5R/dabMg9TGfGwzYHlqHDC7fpkl45h409wb/oSL/jnNnPGevjFJ3+Rn8sCeeZ9zab7vPG3anvIzecswW21it33Ebrqmuqn3TuuUtTybfHW60R+Ww7v2G4biByk=
+  </data>
+ </layer>
+ <layer name="Foreground" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztlUsKACAIRFvZ/W/cVgYKxG/WQGhBDC+Vxvi6SRNid3XlJciR04sXfaNEsKx5M7myfPnKVpX3f2GOeK7hlTBY9pvl20m4b57VXd29VaXPI32ltSKIGl/pnZ0vnp32XXxPtdPMYKV/1lsLH2sCWg==
+  </data>
+ </layer>
+ <layer name="Top" width="30" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt0iEOAAAIQlGT9z+ynWoQ5n+bnYFVwF8thx36vEX/edgsB1v5ctxF/0WzueXFbwN/9AC1
+  </data>
+ </layer>
+</map>

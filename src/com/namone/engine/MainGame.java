@@ -36,6 +36,9 @@ public class MainGame {
 		
 		// TODO ADD GRAPHICS CONTEXT & GRAPHICS OBJECT (FOR TEXT DRAWING, ETC)		
 		
+		// CLEV IS THE DEFAULT PLAYER
+		// CREATE THE PLAYER (DON'T DRAW YET)
+		player = new Clev(); 
 		// INITIALIZE OPENGL
 		setOpenGL();
 		
@@ -48,11 +51,7 @@ public class MainGame {
 		
 		// TELL US WHAT'S GOING ON
 		System.out.println("Application Initialized...");
-		
-		// CLEV IS THE DEFAULT PLAYER
-		// CREATE THE PLAYER (DON'T DRAW YET)
-		player = new Clev(); 
-		
+				
 		// LOOP THROUGH THE GAME
 		gameLoop(); 
 		
@@ -75,6 +74,12 @@ public class MainGame {
 	// UPDATE GAME - PLAYER POSITION, ETC.
 	public void update(){
 		gameStates.update(player); // UPDATE THE SELECTED GAME STATE
+
+		glLoadIdentity();
+		// FOLLOW THE PLAYER
+		glOrtho(player.PlayerX - 200, player.PlayerX + 800, 
+				player.PlayerY + 600, player.PlayerY - 100, 1, -1);
+
 	}
 	
 	
@@ -82,7 +87,6 @@ public class MainGame {
 	public void draw(){
 		glClear(GL_COLOR_BUFFER_BIT); // CLEAR COLOR
 		glClearColor(1, 1, 1, 1); // PAINT COLOR (WILL DELETE IN FUTURE)
-		
 		gameStates.draw(player); // DRAW THE SELECTED GAME STATE
 	}
 	
@@ -91,8 +95,7 @@ public class MainGame {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 		glEnable(GL_TEXTURE_2D); 
 		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0, 800, 600, 0, 1, -1);		
+
 		glMatrixMode(GL_MODELVIEW);
 		glDisable(GL_DEPTH_TEST); 		
 		

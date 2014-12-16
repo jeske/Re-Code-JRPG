@@ -4,6 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Rectangle;
 
 public class Clev extends Player{
 	
@@ -17,20 +18,10 @@ public class Clev extends Player{
 	
 	// DRAW JOHN
 	public void drawPlayer(){
-		
+		hitbox = new Rectangle(PlayerX, PlayerY, PLAYER_W, PLAYER_H);
 		// DRAW		
 		Clev.draw(PlayerX, PlayerY, 32, 32);
-		Clev.bind();
-		glBegin(GL_QUADS);
-		{			
-			glVertex2f(PlayerX, PlayerY);			
-			glVertex2f(PlayerX, PlayerY + 32);				
-			glVertex2f(PlayerX + 32, PlayerY + 32);				
-			glVertex2f(PlayerX + 32, PlayerY);
-		}
-		glEnd();
-		
-
+		hitbox.setLocation(PlayerX, PlayerY);
 	}
 	
 	// NOTE: .GETSUBIMAGE(INT X, INT Y) WORKS OFF OF CELLS, NOT COORDINATES

@@ -16,6 +16,7 @@ public class Enemy {
 	public int         viewRadius;
 	protected float    movementSpeed;
 	protected boolean  inRange;
+	protected boolean  canMove; // DETECTS COLLISION
 	protected Random   random = new Random();
 	protected int      wayPointX;
 	protected int      wayPointY;
