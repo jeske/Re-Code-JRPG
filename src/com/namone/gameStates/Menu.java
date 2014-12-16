@@ -8,21 +8,21 @@ import org.newdawn.slick.TrueTypeFont;
 import com.namone.player.Player;
 
 public class Menu extends GameState {
-	
+
 	Font font;
 	TrueTypeFont ttFont;
-	
-	public Menu(){
+
+	public Menu() {
 		// TODO
 	}
-	
-	public void draw(Player player){
+
+	public void draw(Player player) {
 		glClearColor(0, 0, 0, 1); // TESTING PURPOSES
-		
+
 		// TODO - PRINT OUT TITLE, BUTTONS, EFFECTS, ETC.
 	}
-	
-	public void update(Player player){
+
+	public void update(Player player) {
 		// TODO
 	}
 
