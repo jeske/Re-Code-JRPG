@@ -5,11 +5,15 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class LoadWorld {
 
-	private TiledMap map;
-	private DrawMap drawMap;
+	protected TiledMap map;
 
 	public LoadWorld() {
-		init();
+		try {
+			map = new TiledMap("resources/map/TESTMAP.tmx");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// LOAD IN THE MAP
@@ -19,7 +23,8 @@ public class LoadWorld {
 
 	// DRAW THE MAP
 	public void drawMap() {
-		drawMap = new DrawMap();
+		// OVERRIDDEN BY DRAWMAP.JAVA
+		
 	}
 
 }

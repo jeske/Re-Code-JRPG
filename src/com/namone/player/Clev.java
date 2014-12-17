@@ -16,7 +16,7 @@ public class Clev extends Player {
 		Clev = spriteSheet.getSubImage(0, 0);
 	}
 
-	// DRAW JOHN
+	// DRAW CLEV
 	public void drawPlayer() {
 		hitbox = new Rectangle(PlayerX, PlayerY, PLAYER_W, PLAYER_H);
 		// DRAW

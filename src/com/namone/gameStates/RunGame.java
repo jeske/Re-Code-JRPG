@@ -11,6 +11,7 @@ import org.newdawn.slick.SpriteSheet;
 import com.namone.enemies.*;
 import com.namone.movement.playerMovement;
 import com.namone.player.Player;
+import com.namone.worldLoad.DrawMap;
 import com.namone.worldLoad.LoadWorld;
 
 public class RunGame extends GameState {
@@ -32,7 +33,7 @@ public class RunGame extends GameState {
 
 		playerMovement = new playerMovement();
 		enemy = new Enemy();
-		loadWorld = new LoadWorld();
+		loadWorld = new DrawMap();
 		// CREATE ENEMIES
 
 		/*
@@ -46,7 +47,7 @@ public class RunGame extends GameState {
 
 	// DRAW ALL GAME COMPONENTS - MAP, ENEMIES, PLAYER, ETC.
 	public void draw(Player player) {
-		// DRAW MAP
+		
 		loadWorld.drawMap();
 		// DRAW PLAYER
 		player.drawPlayer();
@@ -68,12 +69,12 @@ public class RunGame extends GameState {
 		player.updatePlayer();
 
 		// IF THE ARRAY ISN'T EMPTY - UPDATE (PREVENTS INDEXOUTOFBOUNDS)
-		if (!enemies.isEmpty()) {
+		/*if (!enemies.isEmpty()) {
 			for (currentEnemy = 0; currentEnemy <= maxEnemy; currentEnemy++) {
 
 				enemies.get(currentEnemy).updateEnemy(player);
 			}
-		}
+		}  COMMENTED OUT JUST FOR NOW*/ 
 
 		// PLAYER ATTACK
 		player.playerAttack(enemies, maxEnemy);
@@ -92,7 +93,7 @@ public class RunGame extends GameState {
 	public void createEnemies() {
 		// FOR LOOP TO ITERATE THROUGH ARRAY LIST
 		for (currentEnemy = 0; currentEnemy <= maxEnemy; currentEnemy++) {
-			enemies.add(new Knight(random.nextInt(800), random.nextInt(600)));
+			enemies.add(new Knight(random.nextInt(1), random.nextInt(1)));
 		}
 
 	}
