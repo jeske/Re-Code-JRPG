@@ -6,6 +6,7 @@ import org.newdawn.slick.tiled.TiledMap;
 public class LoadWorld {
 
 	private TiledMap map;
+	private DrawMap drawMap;
 
 	public LoadWorld() {
 		init();
@@ -13,17 +14,12 @@ public class LoadWorld {
 
 	// LOAD IN THE MAP
 	public void init() {
-		try {
-			map = new TiledMap("resources/map/JRPGMap 1.0.tmx");
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
 
 	}
 
 	// DRAW THE MAP
 	public void drawMap() {
-		map.render(0, 0);
+		drawMap = new DrawMap();
 	}
 
 }

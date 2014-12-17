@@ -74,12 +74,6 @@ public class MainGame {
 	// UPDATE GAME - PLAYER POSITION, ETC.
 	public void update() {
 		gameStates.update(player); // UPDATE THE SELECTED GAME STATE
-
-		glLoadIdentity();
-		// FOLLOW THE PLAYER
-		glOrtho(player.PlayerX - 200, player.PlayerX + 800,
-				player.PlayerY + 600, player.PlayerY - 100, 1, -1);
-
 	}
 
 	// DRAW THE GAME SPRITES/GRAPHICS
@@ -93,10 +87,13 @@ public class MainGame {
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_TEXTURE_2D);
+		glLoadIdentity();
+		// FOLLOW THE PLAYER
+		glOrtho(0, 800, 600, 0, 1, -1);
 		glMatrixMode(GL_PROJECTION);
-
 		glMatrixMode(GL_MODELVIEW);
 		glDisable(GL_DEPTH_TEST);
+		
 
 		System.out.println("OpenGL Initialized...");
 	}

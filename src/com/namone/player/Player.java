@@ -42,9 +42,8 @@ public class Player {
 
 	}
 
-	// DRAW THE PLAYER - DONE IN INDIVIDUAL PLAYER'S CLASS
-	public void drawPlayer() {
-	}
+	// DRAW THE PLAYER - OVERRIDEN BY INDIVIDUAL PLAYER DRAW METHODS
+	public void drawPlayer() {}
 
 	// PLAYER ATTACK
 
