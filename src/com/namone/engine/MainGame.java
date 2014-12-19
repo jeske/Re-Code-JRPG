@@ -63,7 +63,7 @@ public class MainGame {
 		loadTexture = new LoadTextures(); // SO I CAN LOAD MY TEXTURES
 
 		// START GAME-STATES
-		gameStates.GameState();
+		gameStates.GameState(gameStates);
 
 		// TELL US WHAT'S GOING ON
 		System.out.println("Application Initialized...");

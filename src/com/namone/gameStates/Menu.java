@@ -26,10 +26,12 @@ public class Menu extends GameState {
 	private Color color = Color.transparent;
 	private int mouseX;
 	private int mouseY;
-	GameStateManager gsm = new GameStateManager();
+	
 
-	public Menu() {
+	public Menu(GameStateManager gsm) {
 
+		gameStates = gsm;
+		
 		try {
 			font = new AngelCodeFont(
 					"org/newdawn/slick/data/defaultfont.fnt",
@@ -49,9 +51,7 @@ public class Menu extends GameState {
 		
 	}
 
-	public void draw(Player player) {
-		//glClearColor(0, 0, 0, 1); // TESTING PURPOSES
-		
+	public void draw(Player player) {		
 		imageTitle.draw((Display.getWidth()/2)-150, (Display.getHeight()/2)-150);
 		imagePlay.draw((Display.getWidth()/2)-110, (Display.getHeight()/2));
 		imageExit.draw((Display.getWidth()/2)+10, (Display.getHeight()/2));
@@ -63,15 +63,15 @@ public class Menu extends GameState {
 		
 		if(((mouseX > (Display.getWidth()/2)-110) && (mouseX < (Display.getWidth()/2)-10)) && ((mouseY > (Display.getHeight()/2)) && (mouseY < ((Display.getHeight()/2)+35)))){
 			if(Mouse.isButtonDown(0)){
-				System.out.println("SETTING: currentState to 1");
 				gameStates.setGameState(1);
+				System.out.println("SETTING: currentState to 1");
 			}
 		}
 		
 		if(((mouseX > (Display.getWidth()/2)+10) && (mouseX < (Display.getWidth()/2)+110)) && ((mouseY > ((Display.getHeight()/2))) && (mouseY < ((Display.getHeight()/2)+35)))){
 			if(Mouse.isButtonDown(0)){
-				System.out.println("EXIT Game!");
 				System.exit(0);   // Exits normaly
+				System.out.println("EXIT Game!");
  			}
 		}
 	}

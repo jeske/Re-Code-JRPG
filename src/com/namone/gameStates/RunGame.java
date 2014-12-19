@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.namone.enemies.Enemy;
 import com.namone.enemies.Knight;
+import com.namone.gameStateManager.GameStateManager;
 import com.namone.movement.playerMovement;
 import com.namone.player.Player;
 import com.namone.worldLoad.LoadWorld;
@@ -24,8 +25,9 @@ public class RunGame extends GameState {
 	private Random random = new Random();
 
 	// INITIALIZE EVERYTHING
-	public RunGame() {
+	public RunGame(GameStateManager gsm) {
 
+		gameStates = gsm;
 		playerMovement = new playerMovement();
 		enemy = new Enemy();
 		loadWorld = new LoadWorld();
