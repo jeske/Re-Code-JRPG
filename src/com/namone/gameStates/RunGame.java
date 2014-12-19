@@ -3,12 +3,8 @@ package com.namone.gameStates;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
-
-import com.namone.enemies.*;
+import com.namone.enemies.Enemy;
+import com.namone.enemies.Knight;
 import com.namone.movement.playerMovement;
 import com.namone.player.Player;
 import com.namone.worldLoad.LoadWorld;
