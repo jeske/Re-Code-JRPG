@@ -2,7 +2,9 @@ package com.namone.gameStateManager;
 
 import java.util.ArrayList;
 
-import com.namone.gameStates.*;
+import com.namone.gameStates.GameState;
+import com.namone.gameStates.Menu;
+import com.namone.gameStates.RunGame;
 import com.namone.player.Player;
 
 public class GameStateManager {
@@ -12,13 +14,16 @@ public class GameStateManager {
 	private int currentState; // LETS US MOVE THROUGH ARRAY-LIST INDICES
 	private ArrayList<GameState> gameStates = new ArrayList<GameState>();
 
-	public void GameState() {
-		currentState = RUN_GAME; // DEFAULT STATE IS MENU - CURRENTLY SET TO
+	public void GameState(GameStateManager gsm) {
+		currentState = MENU; // DEFAULT STATE IS MENU - CURRENTLY SET TO
 									// GAME
 
-		gameStates.add(new Menu()); // ADD MENU OBJECT AT POSITION 0 OF ARRAY
-		gameStates.add(new RunGame()); // ADD NEW RUNGAME OBJECT AT POSITION 1
+		gameStates.add(new Menu(gsm)); // ADD MENU OBJECT AT POSITION 0 OF ARRAY
+		gameStates.add(new RunGame(gsm)); // ADD NEW RUNGAME OBJECT AT POSITION 1
 										// OF ARRAY
+	}
+	public void setGameState(int gameState){
+		currentState = gameState;
 	}
 
 	public void update(Player player) {

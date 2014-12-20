@@ -3,12 +3,11 @@ package com.namone.gameStates;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Rectangle;
 
+import com.namone.collision.WorldCollision;
 import com.namone.enemies.*;
+import com.namone.gameStateManager.GameStateManager;
 import com.namone.movement.playerMovement;
 import com.namone.player.Player;
 import com.namone.worldLoad.DrawMap;
@@ -22,6 +21,10 @@ public class RunGame extends GameState {
 	private playerMovement playerMovement;
 	private Enemy enemy;
 	private LoadWorld loadWorld;
+	// FOR COLLISION DETECTION
+	private WorldCollision collision;
+	private ArrayList<Rectangle> rectList;
+	private boolean checkCollision;
 
 	// ITERATE THROUGH ARRAYLIST OF ENEMIES
 	public int currentEnemy;
@@ -29,11 +32,12 @@ public class RunGame extends GameState {
 	private Random random = new Random();
 
 	// INITIALIZE EVERYTHING
-	public RunGame() {
-
+	public RunGame(GameStateManager gsm) {
+		loadWorld = new DrawMap();
+		collision = new WorldCollision();
 		playerMovement = new playerMovement();
 		enemy = new Enemy();
-		loadWorld = new DrawMap();
+
 		// CREATE ENEMIES
 
 		/*
@@ -48,7 +52,7 @@ public class RunGame extends GameState {
 	// DRAW ALL GAME COMPONENTS - MAP, ENEMIES, PLAYER, ETC.
 	public void draw(Player player) {
 		
-		loadWorld.drawMap();
+		loadWorld.draw();
 		// DRAW PLAYER
 		player.drawPlayer();
 
@@ -65,6 +69,7 @@ public class RunGame extends GameState {
 	// UPDATE ALL GAME OBJECTS
 	public void update(Player player) {
 
+		rectList = loadWorld.getRectList();
 		// UPDATE PLAYER
 		player.updatePlayer();
 
@@ -84,8 +89,9 @@ public class RunGame extends GameState {
 		 * if(player.hitbox.getX() >= 0 && player.hitbox.getY() >= 0) {
 		 * player.canMove = true; }
 		 */
-
-		playerMovement.movePlayer(player);
+		System.out.println(checkCollision);
+		checkCollision = collision.checkCollision(player, rectList);
+		playerMovement.movePlayer(player, checkCollision);
 
 	}
 

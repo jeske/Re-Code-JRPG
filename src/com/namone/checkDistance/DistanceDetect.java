@@ -52,15 +52,7 @@ public class DistanceDetect {
 		for (int i = 0; i <= maxEnemy; i++) {
 			int playerDeltaX = Enemy.get(i).enemyX - player.PlayerX;
 			int playerDeltaY = Enemy.get(i).enemyY - player.PlayerY;
-
-			System.out.println("ENEMY # : " + i + " - X : "
-					+ Enemy.get(i).enemyX + " - Y : " + Enemy.get(i).enemyY);
-			// TESTING PURPOSES
-			System.out.println("PLAYER X: " + player.PlayerX);
-			System.out.println("PLAYER Y: " + player.PlayerY);
-			System.out.println("PLAYER DELTA X : " + playerDeltaX);
-			System.out.println("PLAYER DELTA Y : " + playerDeltaY);
-
+			
 			if (playerDeltaX <= player.playerRange
 					&& playerDeltaX >= -player.playerRange) {
 				inRange = true;
@@ -75,8 +67,6 @@ public class DistanceDetect {
 				inRange = false;
 			}
 
-			// TESTING
-			System.out.println(inRange);
 		}
 
 		return inRange;
