@@ -89,7 +89,6 @@ public class RunGame extends GameState {
 		 * if(player.hitbox.getX() >= 0 && player.hitbox.getY() >= 0) {
 		 * player.canMove = true; }
 		 */
-		System.out.println(checkCollision);
 		checkCollision = collision.checkCollision(player, rectList);
 		playerMovement.movePlayer(player, checkCollision);
 

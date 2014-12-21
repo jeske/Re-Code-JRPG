@@ -16,7 +16,7 @@ public class Clev extends Player {
 		Clev = spriteSheet.getSubImage(0, 0);
 		// 25 SO THAT THERE IT LOOKS LIKE THE PLAYER ITSELF IS ACTUALLY HITTING
 		// THE OBJECT
-		hitbox = new Rectangle(PlayerX + 32, PlayerY + 32, 25, 25);
+		hitbox = new Rectangle(PlayerX, PlayerY, 32, 32);
 	}
 
 	// DRAW CLEV
