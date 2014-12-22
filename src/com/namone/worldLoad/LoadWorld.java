@@ -21,7 +21,7 @@ public class LoadWorld {
 
 	public LoadWorld() {
 		try {
-			map = new TiledMap("resources/map/TESTMAP.tmx");
+			map = new TiledMap("resources/map/JRPGMap 1.0.tmx");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

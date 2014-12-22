@@ -22,31 +22,11 @@ public class WorldCollision {
         			     isCollideUp,
         			     isCollideDown;
         
-        private Point2D topLeftBlockPoint,
-        				topRightBlockPoint,
-        				lowerLeftBlockPoint,
-        				lowerRightBlockPoint,
-        				
-        				topLeftPlayerPoint,
-        				topRightPlayerPoint,
-        				lowerLeftPlayerPoint,
-        				lowerRightPlayerPoint;
-        
-        private playerMovement move = new playerMovement();
-        
-        private float blockDeltaX;
-        private float blockDeltaY;
+        private final int BLOCK_RADIUS = 16;
         
         /*
-         *  TODO -
-         *  
-         *  NOT WORKING YET. IT IS A LOT BETTER THAN IT WAS. HOWEVER, WHEN Y VALUES ARE ADDED
-         *  (COLLISION FOR TOPS AND BOTTOMS OF BLOCKS) IT MESSES THINGS UP
-         *  
-         *  NOTE: I ADDED AN EXTRA 2PX WIDTH (IN LOADMAP.JAVA I THINK) TO THE BLOCKS COLLISION BOX 
-         *  FOR EASIER DETECTION
-         *  
-         *  - NAMONE (ALEX)
+         *   
+         *  IT WORKS!
          */
         
         public boolean checkCollision(Player player, ArrayList<Rectangle> collisionBlocks) {
@@ -55,90 +35,53 @@ public class WorldCollision {
         		update(player);
         		
                 // FOR EVERY RECTANGLE IN ARRAYLIST COLLISIONBLOCKS...          
-                for(Rectangle blocks : collisionBlocks) { 
-                	
-                	// POINTS OF BLOCKS
-                	topLeftBlockPoint = new Point2D.Double(blocks.getX(), blocks.getY());
-                	topRightBlockPoint = new Point2D.Double(blocks.getX() + 32, blocks.getY());
-                	lowerLeftBlockPoint = new Point2D.Double(blocks.getX(), blocks.getY() + 32);
-                	lowerRightBlockPoint = new Point2D.Double(blocks.getX() + 32, blocks.getY() + 32);
-                	
-                	// POINTS OF PLAYER HITBOX
-                	topLeftPlayerPoint = new Point2D.Double(player.hitbox.getX(), player.hitbox.getY());
-                	topRightPlayerPoint = new Point2D.Double(player.hitbox.getX() + 32, player.hitbox.getY());
-                	lowerLeftPlayerPoint = new Point2D.Double(player.hitbox.getX(), player.hitbox.getY() + 32);
-                	lowerRightPlayerPoint = new Point2D.Double(player.hitbox.getX() + 32, player.hitbox.getY() + 32);
-                	
-                	blockDeltaX = (int) blocks.getX() - player.hitbox.getX();
+                for(Rectangle blocks : collisionBlocks) {
                 	
                     // TODO - FINISH COLLISION
                     if (player.hitbox.intersects (blocks) || blocks.contains (player.hitbox)) {
                     	
-                    	if (topRightPlayerPoint.getX() <= topRightBlockPoint.getX()
-                    			&& lowerRightPlayerPoint.getX() <= lowerRightBlockPoint.getX()
-                    			&& topRightPlayerPoint.getY() >= topRightBlockPoint.getY()
-                    			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()
-                    			
-                    			|| topRightPlayerPoint.getX() <= topRightBlockPoint.getX()
-                            			&& lowerRightPlayerPoint.getX() <= lowerRightBlockPoint.getX()
-                            			&& topRightPlayerPoint.getY() <= topRightBlockPoint.getY()
-                            			&& topLeftPlayerPoint.getY() <= topLeftBlockPoint.getY()) {
+                    	
+                    	if (player.hitbox.getCenterX() <= blocks.getCenterX() - BLOCK_RADIUS) {
+                    		
                     		isCollideRight = true; // IS RIGHT
                     		isCollideLeft  = false;
                     		isCollideUp    = false;
                     		isCollideDown  = false;
                     		
+                    		player.PlayerX -= 1;
                     		return isCollideRight;
-                    	} 
+                    	}
                     	
-                    	else if (topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()
-                    			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()
-                    			&& topRightPlayerPoint.getY() >= topRightBlockPoint.getY()
-                    			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()
-                    			
-                    			|| topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()
-                            			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()
-                            			&& topRightPlayerPoint.getY() <= topRightBlockPoint.getY()
-                            			&& topLeftPlayerPoint.getY() <= topLeftBlockPoint.getY()) {
-                    		isCollideRight = false;
+                    	else if (player.hitbox.getCenterX() >= blocks.getCenterX() + BLOCK_RADIUS) {
+                    		
+                    		isCollideRight = false; 
                     		isCollideLeft  = true; // IS LEFT
                     		isCollideUp    = false;
                     		isCollideDown  = false;
                     		
+                    		player.PlayerX += 1;
                     		return isCollideLeft;
-                    	}
+                    	} 
                     	
-                    	else if (topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()
-                    			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()
-                    			&& topRightPlayerPoint.getY() >= topRightBlockPoint.getY()
-                    			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()
-                    			
-                    			|| topLeftPlayerPoint.getX() <= topLeftBlockPoint.getX()
-                            			&& lowerLeftPlayerPoint.getX() <= lowerLeftBlockPoint.getX()
-                            			&& topRightPlayerPoint.getY() >= topRightBlockPoint.getY()
-                            			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()) {
-                    		isCollideRight = false;
+                    	else if (player.hitbox.getCenterY() <= blocks.getCenterY() - BLOCK_RADIUS) {
+                    		
+                    		isCollideRight = false; 
                     		isCollideLeft  = false;
-                    		isCollideUp    = true;
+                    		isCollideUp    = true;  // IS UP
                     		isCollideDown  = false;
                     		
+                    		player.PlayerY -= 1;
                     		return isCollideUp;
                     	}
                     	
-                    	else if (topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()
-                    			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()
-                    			&& topRightPlayerPoint.getY() <= topRightBlockPoint.getY()
-                    			&& topLeftPlayerPoint.getY() <= topLeftBlockPoint.getY()
-                    			
-                    			|| topLeftPlayerPoint.getX() <= topLeftBlockPoint.getX()
-                            			&& lowerLeftPlayerPoint.getX() <= lowerLeftBlockPoint.getX()
-                            			&& topRightPlayerPoint.getY() <= topRightBlockPoint.getY()
-                            			&& topLeftPlayerPoint.getY() <= topLeftBlockPoint.getY()) {
-                    		isCollideRight = false;
-                    		isCollideLeft  = false;
-                    		isCollideUp    = false;
-                    		isCollideDown  = true;
+                    	else if (player.hitbox.getCenterY() >= blocks.getCenterY() + BLOCK_RADIUS) {
                     		
+                    		isCollideRight = false; 
+                    		isCollideLeft  = false;
+                    		isCollideUp    = false;  
+                    		isCollideDown  = true; // IS DOWN
+                    		
+                    		player.PlayerY += 1;
                     		return isCollideDown;
                     	}
                     	

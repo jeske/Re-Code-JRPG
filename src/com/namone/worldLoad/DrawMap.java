@@ -16,7 +16,7 @@ public class DrawMap extends LoadWorld{
 	// KEEP TRACK OF WHICH BLOCKS COLLIDE
 	private boolean blocked[][] = new boolean[map.getWidth()][map.getHeight()];
 	private int tileID;
-	private int layerIndex = 0; 
+	private int layerIndex = 1; 
 	private int tileSize = 32;
 	private String collide; // HOLDS PROPERTIES OF BLOCK TO CHECK
 	// TO CHECK AGAINST
