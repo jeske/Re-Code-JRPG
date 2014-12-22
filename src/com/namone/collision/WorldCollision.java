@@ -88,8 +88,8 @@ public class WorldCollision {
                     		isCollideUp    = false;
                     		isCollideDown  = false;
                     		
-                    		player.PlayerX -= 0.1f;
-                    	}
+                    		return isCollideRight;
+                    	} 
                     	
                     	else if (topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()
                     			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()
@@ -105,8 +105,41 @@ public class WorldCollision {
                     		isCollideUp    = false;
                     		isCollideDown  = false;
                     		
-                    		player.PlayerX += 0.1f;
                     		return isCollideLeft;
+                    	}
+                    	
+                    	else if (topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()
+                    			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()
+                    			&& topRightPlayerPoint.getY() >= topRightBlockPoint.getY()
+                    			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()
+                    			
+                    			|| topLeftPlayerPoint.getX() <= topLeftBlockPoint.getX()
+                            			&& lowerLeftPlayerPoint.getX() <= lowerLeftBlockPoint.getX()
+                            			&& topRightPlayerPoint.getY() >= topRightBlockPoint.getY()
+                            			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()) {
+                    		isCollideRight = false;
+                    		isCollideLeft  = false;
+                    		isCollideUp    = true;
+                    		isCollideDown  = false;
+                    		
+                    		return isCollideUp;
+                    	}
+                    	
+                    	else if (topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()
+                    			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()
+                    			&& topRightPlayerPoint.getY() <= topRightBlockPoint.getY()
+                    			&& topLeftPlayerPoint.getY() <= topLeftBlockPoint.getY()
+                    			
+                    			|| topLeftPlayerPoint.getX() <= topLeftBlockPoint.getX()
+                            			&& lowerLeftPlayerPoint.getX() <= lowerLeftBlockPoint.getX()
+                            			&& topRightPlayerPoint.getY() <= topRightBlockPoint.getY()
+                            			&& topLeftPlayerPoint.getY() <= topLeftBlockPoint.getY()) {
+                    		isCollideRight = false;
+                    		isCollideLeft  = false;
+                    		isCollideUp    = false;
+                    		isCollideDown  = true;
+                    		
+                    		return isCollideDown;
                     	}
                     	
 
