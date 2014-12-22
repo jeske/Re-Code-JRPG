@@ -19,8 +19,8 @@ public class Player {
 	private DistanceDetect distanceDetect = new DistanceDetect();
 	// IS THE ENEMY IN RANGE
 	protected boolean inRange = true;
-	public int PlayerX = Display.getWidth() / 2;
-	public int PlayerY = Display.getHeight() / 2;
+	public float PlayerX = Display.getWidth() / 2;
+	public float PlayerY = Display.getHeight() / 2;
 	protected final int PLAYER_W = 32;
 	protected final int PLAYER_H = 32;
 	public Shape hitbox;

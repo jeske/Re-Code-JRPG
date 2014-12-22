@@ -17,7 +17,10 @@ import com.namone.player.Player;
  
 public class WorldCollision {  
  
-        private boolean  isCollide;
+        private boolean  isCollideLeft,
+        			     isCollideRight,
+        			     isCollideUp,
+        			     isCollideDown;
         
         private Point2D topLeftBlockPoint,
         				topRightBlockPoint,
@@ -51,8 +54,7 @@ public class WorldCollision {
         	    // SET HITBOX LOCATION TO PLAYER LOCATION
         		update(player);
         		
-                // FOR EVERY RECTANGLE IN ARRAYLIST COLLISIONBLOCKS...
-                isCollide = false; // RESET            
+                // FOR EVERY RECTANGLE IN ARRAYLIST COLLISIONBLOCKS...          
                 for(Rectangle blocks : collisionBlocks) { 
                 	
                 	// POINTS OF BLOCKS
@@ -71,41 +73,50 @@ public class WorldCollision {
                 	
                     // TODO - FINISH COLLISION
                     if (player.hitbox.intersects (blocks) || blocks.contains (player.hitbox)) {
-                    	isCollide = true; // PLAYER IS NOW COLLIDING
                     	
                     	if (topRightPlayerPoint.getX() <= topRightBlockPoint.getX()
                     			&& lowerRightPlayerPoint.getX() <= lowerRightBlockPoint.getX()
                     			&& topRightPlayerPoint.getY() >= topRightBlockPoint.getY()
-                    			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()) {
-                    		player.PlayerX -= 1;
+                    			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()
+                    			
+                    			|| topRightPlayerPoint.getX() <= topRightBlockPoint.getX()
+                            			&& lowerRightPlayerPoint.getX() <= lowerRightBlockPoint.getX()
+                            			&& topRightPlayerPoint.getY() <= topRightBlockPoint.getY()
+                            			&& topLeftPlayerPoint.getY() <= topLeftBlockPoint.getY()) {
+                    		isCollideRight = true; // IS RIGHT
+                    		isCollideLeft  = false;
+                    		isCollideUp    = false;
+                    		isCollideDown  = false;
+                    		
+                    		player.PlayerX -= 0.1f;
                     	}
                     	
                     	else if (topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()
                     			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()
                     			&& topRightPlayerPoint.getY() >= topRightBlockPoint.getY()
-                    			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()) {
-                    		player.PlayerX += 1;
+                    			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()
+                    			
+                    			|| topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()
+                            			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()
+                            			&& topRightPlayerPoint.getY() <= topRightBlockPoint.getY()
+                            			&& topLeftPlayerPoint.getY() <= topLeftBlockPoint.getY()) {
+                    		isCollideRight = false;
+                    		isCollideLeft  = true; // IS LEFT
+                    		isCollideUp    = false;
+                    		isCollideDown  = false;
+                    		
+                    		player.PlayerX += 0.1f;
+                    		return isCollideLeft;
                     	}
                     	
-                    	else if (lowerRightPlayerPoint.getY() <= lowerRightBlockPoint.getY()
-                    			&& lowerLeftPlayerPoint.getY() <= lowerLeftBlockPoint.getY()
-                    			&& lowerRightPlayerPoint.getX() <= lowerRightBlockPoint.getX()
-                    			&& lowerLeftPlayerPoint.getX() >= lowerLeftBlockPoint.getX()) {
-                    		player.PlayerY -= 1;
-                    	}  
-                    	
-                    	else if (topRightPlayerPoint.getY() >= topRightBlockPoint.getY()
-                    			&& topLeftPlayerPoint.getY() >= topLeftBlockPoint.getY()
-                    			&& topRightPlayerPoint.getX() <= topRightBlockPoint.getX()
-                    			&& topLeftPlayerPoint.getX() >= topLeftBlockPoint.getX()) {
-                    		player.PlayerY += 1;
-                    	}  
 
                     }             
 
                 }
+                // IF NOTHING ELSE EVALUATES THEN SET TO FALSE
+				return false;
 
-                return isCollide;              
+          
  
         }
         

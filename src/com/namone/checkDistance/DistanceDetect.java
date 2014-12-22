@@ -8,8 +8,8 @@ import com.namone.player.Player;
 public class DistanceDetect {
 
 	private boolean inRange;
-	private int deltaX;
-	private int deltaY;
+	private float deltaX;
+	private float deltaY;
 
 	// CHECK IF PLAYER IS IN ENEMY SIGHT RANGE
 	// ABLE TO PASS IN ANY PLAYER/ENEMY (AND IT'S RANGE, POSITION, ETC.) TO
@@ -50,8 +50,8 @@ public class DistanceDetect {
 		 */
 
 		for (int i = 0; i <= maxEnemy; i++) {
-			int playerDeltaX = Enemy.get(i).enemyX - player.PlayerX;
-			int playerDeltaY = Enemy.get(i).enemyY - player.PlayerY;
+			float playerDeltaX = Enemy.get(i).enemyX - player.PlayerX;
+			float playerDeltaY = Enemy.get(i).enemyY - player.PlayerY;
 			
 			if (playerDeltaX <= player.playerRange
 					&& playerDeltaX >= -player.playerRange) {

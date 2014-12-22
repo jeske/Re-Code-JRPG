@@ -64,7 +64,7 @@ public class DrawMap extends LoadWorld{
 					blocked[i][j] = true; 
 					// ADD A NEW COLLISION BLOCK TO CHECK AGAINST IN THE GAME-LOOP
 					collisionBlocks.add(new Rectangle((float) i * tileSize, (float) j * tileSize,
-							tileSize + 2, tileSize + 2));
+							tileSize - 10, tileSize - 10));
 					
 				}			
 
