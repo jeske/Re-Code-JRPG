@@ -7,7 +7,7 @@ import com.namone.player.Player;
 
 public class playerMovement {
 
-	public int moveSpeed = 10;
+	public int moveSpeed = 3;
 
 	public void movePlayer(Player player, boolean isCollide) {
 
