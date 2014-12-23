@@ -2,96 +2,63 @@ package com.namone.movement;
 
 import org.lwjgl.input.Keyboard;
 
+import com.namone.collision.WorldCollision;
 import com.namone.player.Player;
 
 public class playerMovement {
 
-	private int moveSpeed = 3;
-	private int runSpeed = 5;
+	public int moveSpeed = 3;
 
-	public void movePlayer(Player player) {
+	public void movePlayer(Player player, boolean isCollide) {
 
 		// MOVE UP-LEFT
+		// IF PRESSED AND COLLIDE IS FALSE
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)
-				&& Keyboard.isKeyDown(Keyboard.KEY_A) && player.canMove) {
-			if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-				player.PlayerX -= runSpeed;
-				player.PlayerY -= runSpeed;
-			} else {
-				player.PlayerX -= moveSpeed;
-				player.PlayerY -= moveSpeed;
-			}
+				&& Keyboard.isKeyDown(Keyboard.KEY_A) && !isCollide) {
+			player.PlayerX -= moveSpeed;
+			player.PlayerY -= moveSpeed;
+			
 		}
 
 		// MOVE UP-RIGHT
 		else if (Keyboard.isKeyDown(Keyboard.KEY_W)
-				&& Keyboard.isKeyDown(Keyboard.KEY_D) && player.canMove) {
-			if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-				player.PlayerX += runSpeed;
-				player.PlayerY -= runSpeed;
-			} else {
-				player.PlayerX += moveSpeed;
-				player.PlayerY -= moveSpeed;
-			}
+				&& Keyboard.isKeyDown(Keyboard.KEY_D) && !isCollide) {
+			player.PlayerX += moveSpeed;
+			player.PlayerY -= moveSpeed;
 		}
 
 		// MOVE DOWN-RIGHT
 		else if (Keyboard.isKeyDown(Keyboard.KEY_S)
-				&& Keyboard.isKeyDown(Keyboard.KEY_D) && player.canMove) {
-			if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-				player.PlayerX += runSpeed;
-				player.PlayerY += runSpeed;
-			} else {
-				player.PlayerX += moveSpeed;
-				player.PlayerY += moveSpeed;
-			}
+				&& Keyboard.isKeyDown(Keyboard.KEY_D) && !isCollide) {
+			player.PlayerX += moveSpeed;
+			player.PlayerY += moveSpeed;
 		}
 
 		// MOVE DOWN-LEFT
 		else if (Keyboard.isKeyDown(Keyboard.KEY_S)
-				&& Keyboard.isKeyDown(Keyboard.KEY_A) && player.canMove) {
-			if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-				player.PlayerX -= runSpeed;
-				player.PlayerY += runSpeed;
-			} else {
-				player.PlayerX -= moveSpeed;
-				player.PlayerY += moveSpeed;
-			}
+				&& Keyboard.isKeyDown(Keyboard.KEY_A) && !isCollide) {
+			player.PlayerX -= moveSpeed;
+			player.PlayerY += moveSpeed;
 		}
 
 		// MOVE UP
-		else if (Keyboard.isKeyDown(Keyboard.KEY_W) && player.canMove) {
-			if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-				player.PlayerY -= runSpeed;
-			} else {
-				player.PlayerY -= moveSpeed;
-			}
+		else if (Keyboard.isKeyDown(Keyboard.KEY_W) && !isCollide) {
+			player.PlayerY -= moveSpeed;
 		}
 
 		// MOVE DOWN
-		else if (Keyboard.isKeyDown(Keyboard.KEY_S) && player.canMove) {
-			if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-				player.PlayerY += runSpeed;
-			} else {
-				player.PlayerY += moveSpeed;
-			}		}
+		else if (Keyboard.isKeyDown(Keyboard.KEY_S) && !isCollide) {
+			player.PlayerY += moveSpeed;
+		}
 
 		// MOVE LEFT
-		else if (Keyboard.isKeyDown(Keyboard.KEY_A) && player.canMove) {
-			if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-				player.PlayerX -= runSpeed;
-			} else {
-				player.PlayerX -= moveSpeed;
-			}
+		else if (Keyboard.isKeyDown(Keyboard.KEY_A) && !isCollide) {
+			player.PlayerX -= moveSpeed;
 		}
 
 		// MOVE RIGHT
-		else if (Keyboard.isKeyDown(Keyboard.KEY_D) && player.canMove) {
-			if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-				player.PlayerX += runSpeed;
-			} else {
-				player.PlayerX += moveSpeed;
-			}
+		else if (Keyboard.isKeyDown(Keyboard.KEY_D) && !isCollide) {
+			player.PlayerX += moveSpeed;
 		}
 
 	}

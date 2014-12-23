@@ -42,9 +42,9 @@ public class Menu extends GameState {
 		}
 		
 		try{
-			imageTitle = new Image("resources/Menu/tempGameTitle.png");
-			imageExit  = new Image("resources/Menu/tempExitButton.png");
-			imagePlay  = new Image("resources/Menu/tempPlayButton.png");
+			imageTitle = new Image("resources/Menu/gameTitle.png");
+			imageExit  = new Image("resources/Menu/exitButton.png");
+			imagePlay  = new Image("resources/Menu/startButton.png");
 		} catch (Exception e) {
 			System.out.println("ERROR: Image not found!");
 		}
@@ -70,7 +70,7 @@ public class Menu extends GameState {
 		
 		if(((mouseX > (Display.getWidth()/2)+10) && (mouseX < (Display.getWidth()/2)+110)) && ((mouseY > ((Display.getHeight()/2))) && (mouseY < ((Display.getHeight()/2)+35)))){
 			if(Mouse.isButtonDown(0)){
-				System.exit(0);   // Exits normaly
+				System.exit(0);   // Exits normally
 				System.out.println("EXIT Game!");
  			}
 		}

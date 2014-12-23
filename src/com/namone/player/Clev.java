@@ -14,11 +14,13 @@ public class Clev extends Player {
 	public Clev() {
 		// SET PLAYER SPRITE FOR 'CLEV'
 		Clev = spriteSheet.getSubImage(0, 0);
+		// 25 SO THAT THERE IT LOOKS LIKE THE PLAYER ITSELF IS ACTUALLY HITTING
+		// THE OBJECT
+		hitbox = new Rectangle(PlayerX, PlayerY, 32, 32);
 	}
 
-	// DRAW JOHN
-	public void drawPlayer() {
-		hitbox = new Rectangle(PlayerX, PlayerY, PLAYER_W, PLAYER_H);
+	// DRAW CLEV
+	public void drawPlayer() {		
 		// DRAW
 		Clev.draw(PlayerX, PlayerY, 32, 32);
 		hitbox.setLocation(PlayerX, PlayerY);

@@ -1,11 +1,14 @@
 package com.namone.player;
 
 import java.util.ArrayList;
+
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.*;
+
 import com.namone.checkDistance.DistanceDetect;
 import com.namone.enemies.Enemy;
 
@@ -16,9 +19,8 @@ public class Player {
 	private DistanceDetect distanceDetect = new DistanceDetect();
 	// IS THE ENEMY IN RANGE
 	protected boolean inRange = true;
-	public boolean canMove = true; // IS THE PLAYER COLLIDING?
-	public int PlayerX = 100;
-	public int PlayerY = 100;
+	public float PlayerX = Display.getWidth() / 2;
+	public float PlayerY = Display.getHeight() / 2;
 	protected final int PLAYER_W = 32;
 	protected final int PLAYER_H = 32;
 	public Shape hitbox;
@@ -42,9 +44,8 @@ public class Player {
 
 	}
 
-	// DRAW THE PLAYER - DONE IN INDIVIDUAL PLAYER'S CLASS
-	public void drawPlayer() {
-	}
+	// DRAW THE PLAYER - OVERRIDEN BY INDIVIDUAL PLAYER DRAW METHODS
+	public void drawPlayer() {}
 
 	// PLAYER ATTACK
 

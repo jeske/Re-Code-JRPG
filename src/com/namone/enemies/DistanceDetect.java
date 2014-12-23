@@ -5,8 +5,8 @@ import com.namone.player.Player;
 public class DistanceDetect extends Enemy {
 
 	private boolean inRange = false;
-	private int deltaX;
-	private int deltaY;
+	private float deltaX;
+	private float deltaY;
 
 	public DistanceDetect() {
 

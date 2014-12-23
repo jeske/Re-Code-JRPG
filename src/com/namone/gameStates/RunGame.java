@@ -3,11 +3,14 @@ package com.namone.gameStates;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.namone.enemies.Enemy;
-import com.namone.enemies.Knight;
+import org.newdawn.slick.geom.Rectangle;
+
+import com.namone.collision.WorldCollision;
+import com.namone.enemies.*;
 import com.namone.gameStateManager.GameStateManager;
 import com.namone.movement.playerMovement;
 import com.namone.player.Player;
+import com.namone.worldLoad.DrawMap;
 import com.namone.worldLoad.LoadWorld;
 
 public class RunGame extends GameState {
@@ -18,6 +21,10 @@ public class RunGame extends GameState {
 	private playerMovement playerMovement;
 	private Enemy enemy;
 	private LoadWorld loadWorld;
+	// FOR COLLISION DETECTION
+	private WorldCollision collision;
+	private ArrayList<Rectangle> rectList;
+	private boolean checkCollision;
 
 	// ITERATE THROUGH ARRAYLIST OF ENEMIES
 	public int currentEnemy;
@@ -26,11 +33,11 @@ public class RunGame extends GameState {
 
 	// INITIALIZE EVERYTHING
 	public RunGame(GameStateManager gsm) {
-
-		gameStates = gsm;
+		loadWorld = new DrawMap();
+		collision = new WorldCollision();
 		playerMovement = new playerMovement();
 		enemy = new Enemy();
-		loadWorld = new LoadWorld();
+
 		// CREATE ENEMIES
 
 		/*
@@ -44,8 +51,8 @@ public class RunGame extends GameState {
 
 	// DRAW ALL GAME COMPONENTS - MAP, ENEMIES, PLAYER, ETC.
 	public void draw(Player player) {
-		// DRAW MAP
-		loadWorld.drawMap();
+		
+		loadWorld.draw();
 		// DRAW PLAYER
 		player.drawPlayer();
 
@@ -62,16 +69,17 @@ public class RunGame extends GameState {
 	// UPDATE ALL GAME OBJECTS
 	public void update(Player player) {
 
+		rectList = loadWorld.getRectList();
 		// UPDATE PLAYER
 		player.updatePlayer();
 
 		// IF THE ARRAY ISN'T EMPTY - UPDATE (PREVENTS INDEXOUTOFBOUNDS)
-		if (!enemies.isEmpty()) {
+		/*if (!enemies.isEmpty()) {
 			for (currentEnemy = 0; currentEnemy <= maxEnemy; currentEnemy++) {
 
 				enemies.get(currentEnemy).updateEnemy(player);
 			}
-		}
+		}  COMMENTED OUT JUST FOR NOW*/ 
 
 		// PLAYER ATTACK
 		player.playerAttack(enemies, maxEnemy);
@@ -81,8 +89,8 @@ public class RunGame extends GameState {
 		 * if(player.hitbox.getX() >= 0 && player.hitbox.getY() >= 0) {
 		 * player.canMove = true; }
 		 */
-
-		playerMovement.movePlayer(player);
+		checkCollision = collision.checkCollision(player, rectList);
+		playerMovement.movePlayer(player, checkCollision);
 
 	}
 
@@ -90,7 +98,7 @@ public class RunGame extends GameState {
 	public void createEnemies() {
 		// FOR LOOP TO ITERATE THROUGH ARRAY LIST
 		for (currentEnemy = 0; currentEnemy <= maxEnemy; currentEnemy++) {
-			enemies.add(new Knight(random.nextInt(800), random.nextInt(600)));
+			enemies.add(new Knight(random.nextInt(1), random.nextInt(1)));
 		}
 
 	}

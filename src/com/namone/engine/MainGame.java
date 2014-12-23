@@ -93,8 +93,8 @@ public class MainGame {
 
 		glLoadIdentity();
 		// FOLLOW THE PLAYER
-		glOrtho(player.PlayerX - 200, player.PlayerX + 800,
-				player.PlayerY + 600, player.PlayerY - 100, 1, -1);
+		glOrtho(player.PlayerX - Display.getWidth() / 2, player.PlayerX + 450,
+				player.PlayerY + 350, player.PlayerY - Display.getHeight() / 2, 1, -1);
 
 	}
 
