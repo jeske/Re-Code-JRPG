@@ -10,25 +10,27 @@ public class DistanceDetect {
 	private boolean inRange;
 	private float deltaX;
 	private float deltaY;
+	private float pX;
+	private float pY;
+	private float eX;
+	private float eY;
+	private float distance;
 
 	// CHECK IF PLAYER IS IN ENEMY SIGHT RANGE
 	// ABLE TO PASS IN ANY PLAYER/ENEMY (AND IT'S RANGE, POSITION, ETC.) TO
 	// CHECK
 	public boolean checkEnemySight(Player player, Enemy Enemy) {
 		// CALCULATE THE DIFFERENCE BETWEEN PLAYER POSITION & ENEMY POSITION
-		deltaX = Enemy.enemyX - player.PlayerX;
-		deltaY = Enemy.enemyY - player.PlayerY;
-
+//TODO DISTANCE FORUMAL 
+		pX = player.PlayerX;
+		pY = player.PlayerY;
+		eX = Enemy.enemyX;
+		eY = Enemy.enemyY;
+		distance = (float) Math.sqrt(Math.pow((pX - eX), 2) + Math.pow((pY - eY), 2));  //Distance forumal. creates a more circular area of range
 		// EVAULATE
-		if (deltaX <= Enemy.viewRadius && deltaX >= -Enemy.viewRadius) {
+		if (distance < Enemy.viewRadius) { 
 			inRange = true;
-		}
-
-		else if (deltaY >= Enemy.viewRadius && deltaY >= -Enemy.viewRadius) {
-			inRange = true;
-		}
-
-		else {
+		}	else {
 			inRange = false;
 		}
 

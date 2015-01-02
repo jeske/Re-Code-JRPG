@@ -84,6 +84,13 @@ public class DrawMap extends LoadWorld{
 		return collisionBlocks;
 	}
 	
+	public int getMapHeight(){
+		return map.getHeight();
+	}
+	
+	public int getMapWidth(){
+		return map.getWidth();
+	}
 
 
 }

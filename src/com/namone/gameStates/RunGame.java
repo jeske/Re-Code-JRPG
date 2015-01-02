@@ -72,6 +72,13 @@ public class RunGame extends GameState {
 		rectList = loadWorld.getRectList();
 		// UPDATE PLAYER
 		player.updatePlayer();
+		
+		if (!enemies.isEmpty()) {
+			// DRAW EACH ITEM IN ARRAY-LIST
+			for (currentEnemy = 0; currentEnemy <= maxEnemy; currentEnemy++) {
+				enemies.get(currentEnemy).updateEnemy(player, rectList);
+			}
+		}
 
 		// IF THE ARRAY ISN'T EMPTY - UPDATE (PREVENTS INDEXOUTOFBOUNDS)
 		/*if (!enemies.isEmpty()) {
@@ -89,7 +96,7 @@ public class RunGame extends GameState {
 		 * if(player.hitbox.getX() >= 0 && player.hitbox.getY() >= 0) {
 		 * player.canMove = true; }
 		 */
-		checkCollision = collision.checkCollision(player, rectList);
+		checkCollision = collision.checkPlayerCollision(player, rectList);
 		playerMovement.movePlayer(player, checkCollision);
 
 	}
@@ -98,7 +105,8 @@ public class RunGame extends GameState {
 	public void createEnemies() {
 		// FOR LOOP TO ITERATE THROUGH ARRAY LIST
 		for (currentEnemy = 0; currentEnemy <= maxEnemy; currentEnemy++) {
-			enemies.add(new Knight(random.nextInt(1), random.nextInt(1)));
+			//enemies.add(new Knight(random.nextInt((((DrawMap) loadWorld).getMapHeight()*32)), random.nextInt((((DrawMap) loadWorld).getMapWidth()*32))));  // Now loads enemies all over the map
+			enemies.add(new Knight(1, 1));  // For testing
 		}
 
 	}
