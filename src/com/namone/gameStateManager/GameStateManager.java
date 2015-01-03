@@ -6,6 +6,7 @@ import com.namone.gameStates.GameState;
 import com.namone.gameStates.Menu;
 import com.namone.gameStates.RunGame;
 import com.namone.player.Player;
+import org.newdawn.slick.AppGameContainer;
 
 public class GameStateManager {
 
@@ -13,6 +14,12 @@ public class GameStateManager {
 	private int RUN_GAME = 1;
 	private int currentState; // LETS US MOVE THROUGH ARRAY-LIST INDICES
 	private ArrayList<GameState> gameStates = new ArrayList<GameState>();
+
+    public AppGameContainer appGameContainer;
+
+    public GameStateManager(AppGameContainer appGameContainer) {
+        this.appGameContainer = appGameContainer;
+    }
 
 	public void GameState(GameStateManager gsm) {
 		currentState = MENU; // DEFAULT STATE IS MENU - CURRENTLY SET TO

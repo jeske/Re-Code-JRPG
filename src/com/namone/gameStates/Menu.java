@@ -1,9 +1,5 @@
 package com.namone.gameStates;
 
-import static org.lwjgl.opengl.GL11.glClearColor;
-
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -15,23 +11,25 @@ import org.newdawn.slick.TrueTypeFont;
 import com.namone.gameStateManager.GameStateManager;
 import com.namone.player.Player;
 
+import com.namone.simplegui.*;
+
 public class Menu extends GameState {
 
 	Font font;
 	TrueTypeFont ttFont;
 	private Graphics g = new Graphics(); // GRAPHICS CONTEXT
-	private Image imageTitle;
-	private Image imageExit;
-	private Image imagePlay;
 	private Color color = Color.transparent;
 	private int mouseX;
 	private int mouseY;
-	
+
+    private Canvas canvas;
+
+    private GameStateManager gameStateManager;
 
 	public Menu(GameStateManager gsm) {
+        this.gameStateManager = gsm;
+        canvas = new Canvas(gsm);
 
-		gameStates = gsm;
-		
 		try {
 			font = new AngelCodeFont(
 					"org/newdawn/slick/data/defaultfont.fnt",
@@ -42,38 +40,33 @@ public class Menu extends GameState {
 		}
 		
 		try{
-			imageTitle = new Image("resources/Menu/gameTitle.png");
-			imageExit  = new Image("resources/Menu/exitButton.png");
-			imagePlay  = new Image("resources/Menu/startButton.png");
-		} catch (Exception e) {
+			canvas.add(new Button(new Image("resources/Menu/gameTitle.png"),100,100, null));
+            canvas.add(new Button(new Image("resources/Menu/startButton.png"),100,400, new Button.ButtonAction() {
+                public void onClick() {
+                    gameStateManager.setGameState(1);
+                }
+            }
+            ));
+
+            canvas.add(new Button(new Image("resources/Menu/exitButton.png"),100,500, new Button.ButtonAction() {
+                public void onClick() {
+                    System.exit(0);   // Exits normally
+                    System.out.println("EXIT Game!");
+                }
+            }));
+
+        } catch (Exception e) {
 			System.out.println("ERROR: Image not found!");
 		}
 		
 	}
 
-	public void draw(Player player) {		
-		imageTitle.draw((Display.getWidth()/2)-150, (Display.getHeight()/2)-150);
-		imagePlay.draw((Display.getWidth()/2)-110, (Display.getHeight()/2));
-		imageExit.draw((Display.getWidth()/2)+10, (Display.getHeight()/2));
+	public void draw(Player player) {
+        canvas.draw();
 	}
 
 	public void update(Player player) {
-		mouseX = Mouse.getX();
-		mouseY = Mouse.getY();
-		
-		if(((mouseX > (Display.getWidth()/2)-110) && (mouseX < (Display.getWidth()/2)-10)) && ((mouseY > (Display.getHeight()/2)) && (mouseY < ((Display.getHeight()/2)+35)))){
-			if(Mouse.isButtonDown(0)){
-				gameStates.setGameState(1);
-				System.out.println("SETTING: currentState to 1");
-			}
-		}
-		
-		if(((mouseX > (Display.getWidth()/2)+10) && (mouseX < (Display.getWidth()/2)+110)) && ((mouseY > ((Display.getHeight()/2))) && (mouseY < ((Display.getHeight()/2)+35)))){
-			if(Mouse.isButtonDown(0)){
-				System.exit(0);   // Exits normally
-				System.out.println("EXIT Game!");
- 			}
-		}
+        canvas.update();
 	}
 
 }
